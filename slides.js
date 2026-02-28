@@ -121,18 +121,18 @@
 
             // Heading + single list → stretch the list to fill space
             if (headings.length > 0 && blocks.length === 1 && /^(UL|OL)$/.test(blocks[0].tagName)) {
-              headings.forEach(function(h) { h.style.flex = '0 0 auto'; });
+              headings.forEach(function(h) { h.style.setProperty('flex', '0 0 auto', 'important'); });
               var b = blocks[0];
-              b.style.flex = '1 1 auto';
-              b.style.display = 'flex';
-              b.style.flexDirection = 'column';
-              b.style.justifyContent = 'space-evenly';
+              b.style.setProperty('flex', '1 1 auto', 'important');
+              b.style.setProperty('display', 'flex', 'important');
+              b.style.setProperty('flex-direction', 'column', 'important');
+              b.style.setProperty('justify-content', 'space-evenly', 'important');
             } else if (blocks.length > 1) {
               // Multiple blocks: from the 2nd onward, add top margin; lists get looser line height
               for (var i = 1; i < blocks.length; i++) {
-                blocks[i].style.marginTop = '1.5em';
+                blocks[i].style.setProperty('margin-top', '1.5em', 'important');
                 if (/^(UL|OL)$/.test(blocks[i].tagName)) {
-                  blocks[i].style.lineHeight = '1.5';
+                  blocks[i].style.setProperty('line-height', '1.5', 'important');
                 }
               }
             }
