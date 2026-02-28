@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Slides Template</title>
+  <link rel="stylesheet" href="slides.css">
+  <style>
+    .demo-info {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2em;
+      font-family: system-ui, sans-serif;
+      color: #ccc;
+      line-height: 1.6;
+    }
+    .demo-info h1 { color: #e7ad52; margin-bottom: 0.5em; }
+    .demo-info code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .demo-info pre {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1em;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85em;
+      line-height: 1.5;
+    }
+    .demo-info a { color: #e7ad52; }
+  </style>
+</head>
+<body style="background: #111;">
+  <div class="demo-info">
+    <h1>slides.johnsonlee.io</h1>
+    <p>A lightweight, CDN-hosted slide framework built on <a href="https://revealjs.com">Reveal.js</a>.</p>
+
+    <h2>Quick Start</h2>
+    <pre><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="https://slides.johnsonlee.io/slides.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script src="https://slides.johnsonlee.io/slides.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+    Slides.init({
+      title: 'My Presentation',
+      chapters: ['cover', 'chapter-1', 'chapter-2'],
+      langs: { en: 'EN', zh: '中文' }
+    });
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+
+    <h2>Features</h2>
+    <ul>
+      <li>Automatic Reveal.js setup (CSS + JS + plugins)</li>
+      <li>Multi-language support with toggle button</li>
+      <li>Auto-layout: centering, flex stretching, spacing</li>
+      <li>Dynamic page titles</li>
+      <li>Customizable accent color via CSS variables</li>
+    </ul>
+
+    <h2>CSS Variables</h2>
+    <pre><code>:root {
+  --slides-accent: #e7ad52;
+  --slides-accent-rgb: 231, 173, 82;
+}</code></pre>
+
+    <h2>Example</h2>
+    <p>See it in action: <a href="https://llm.johnsonlee.io">llm.johnsonlee.io</a></p>
+  </div>
+</body>
+</html>
