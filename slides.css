@@ -137,3 +137,13 @@
 #lang-toggle:hover {
   background: var(--slides-accent);
 }
+
+/* Mobile: bump text size so body copy stays readable on small screens */
+@media (max-width: 768px) {
+  .reveal {
+    font-size: 56px;
+  }
+  .reveal table {
+    font-size: 0.7em;
+  }
+}
