@@ -83,6 +83,33 @@
   display: block !important;
 }
 
+/* Auto-layout: heading shrinks, list stretches to fill */
+.reveal .slides > section > section > h1,
+.reveal .slides > section > section > h2,
+.reveal .slides > section > section > h3,
+.reveal .slides > section > section > h4,
+.reveal .slides > section > section > h5,
+.reveal .slides > section > section > h6 {
+  flex: 0 0 auto !important;
+}
+
+.stretch-list {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-evenly !important;
+}
+
+/* Auto-layout: spacing for multi-block slides */
+.spaced-block {
+  margin-top: 1.5em !important;
+}
+
+.spaced-block:is(ul, ol) {
+  line-height: 1.5 !important;
+}
+
+/* Two-column layout overrides stretch-list's flex-direction */
 .two-columns {
   flex-wrap: wrap !important;
   flex-direction: row !important;

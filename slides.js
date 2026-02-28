@@ -121,19 +121,11 @@
 
             // Heading + single list → stretch the list to fill space
             if (headings.length > 0 && blocks.length === 1 && /^(UL|OL)$/.test(blocks[0].tagName)) {
-              headings.forEach(function(h) { h.style.setProperty('flex', '0 0 auto', 'important'); });
-              var b = blocks[0];
-              b.style.setProperty('flex', '1 1 auto', 'important');
-              b.style.setProperty('display', 'flex', 'important');
-              b.style.setProperty('flex-direction', 'column', 'important');
-              b.style.setProperty('justify-content', 'space-evenly', 'important');
+              blocks[0].classList.add('stretch-list');
             } else if (blocks.length > 1) {
-              // Multiple blocks: from the 2nd onward, add top margin; lists get looser line height
+              // Multiple blocks: from the 2nd onward, add spacing
               for (var i = 1; i < blocks.length; i++) {
-                blocks[i].style.setProperty('margin-top', '1.5em', 'important');
-                if (/^(UL|OL)$/.test(blocks[i].tagName)) {
-                  blocks[i].style.setProperty('line-height', '1.5', 'important');
-                }
+                blocks[i].classList.add('spaced-block');
               }
             }
           });
