@@ -138,6 +138,22 @@
   background: var(--slides-accent);
 }
 
+.reveal .slides pre:has(> .hljs) {
+  box-shadow: none !important;
+}
+
+.reveal .slides .hljs {
+  min-height: inherit !important;
+}
+
+.reveal .slides .hljs.text {
+  background: none !important;
+}
+
+.reveal .slides .hljs.text .hljs-ln-numbers {
+  display: none !important;
+}
+
 /* Mobile: bump text size so body copy stays readable on small screens */
 @media (max-width: 768px) {
   .reveal .slides section p,
