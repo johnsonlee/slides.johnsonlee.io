@@ -110,7 +110,7 @@
 }
 
 /* Two-column layout overrides stretch-list's flex-direction */
-.two-columns {
+.reveal .slides .two-columns {
   flex-wrap: wrap !important;
   flex-direction: row !important;
   justify-content: flex-start !important;
@@ -118,7 +118,7 @@
   gap: 0 !important;
 }
 
-.two-columns > li {
+.reveal .slides .two-columns > li {
   width: 48% !important;
 }
 
