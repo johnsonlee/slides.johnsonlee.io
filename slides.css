@@ -5,82 +5,82 @@
 }
 
 .reveal .slides section {
-  line-break: strict;
-  overflow-wrap: break-word;
+  line-break: strict !important;
+  overflow-wrap: break-word !important;
 }
 
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
-  text-transform: none;
+  text-transform: none !important;
 }
 
 .reveal h2 {
-  margin-bottom: 40px;
+  margin-bottom: 40px !important;
 }
 
 .reveal .slides > section > section {
   display: flex !important;
-  flex-direction: column;
+  flex-direction: column !important;
   justify-content: flex-start !important;
   align-items: stretch !important;
-  padding: 40px 60px;
-  height: 100%;
-  box-sizing: border-box;
-  text-align: left;
+  padding: 40px 60px !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
 }
 
 .reveal .slides > section > section.center {
   display: grid !important;
   place-content: center !important;
-  text-align: center;
+  text-align: center !important;
 }
 
 .reveal .slides > section > section > p:has(> img) {
-  flex: 1 1 0;
-  min-height: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .reveal .slides > section > section > p > img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
+  max-height: 100% !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
 }
 
 .reveal blockquote {
-  border-left: 6px solid var(--slides-accent);
-  min-width: 90%;
-  margin-left: 0;
-  padding: 0.8em;
-  background: rgba(255, 255, 255, 0.05);
-  font-style: normal;
+  border-left: 6px solid var(--slides-accent) !important;
+  min-width: 90% !important;
+  margin-left: 0 !important;
+  padding: 0.8em !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  font-style: normal !important;
 }
 
 .reveal table {
-  font-size: 0.6em;
-  width: 100%;
+  font-size: 0.6em !important;
+  width: 100% !important;
 }
 
 .reveal table th {
-  background: rgba(var(--slides-accent-rgb), 0.2);
-  color: var(--slides-accent);
+  background: rgba(var(--slides-accent-rgb), 0.2) !important;
+  color: var(--slides-accent) !important;
 }
 
 .reveal table td,
 .reveal table th {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.4em 0.6em;
-  vertical-align: middle;
-  line-height: 1.5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.4em 0.6em !important;
+  vertical-align: middle !important;
+  line-height: 1.5 !important;
 }
 
 .reveal a {
-  color: var(--slides-accent);
+  color: var(--slides-accent) !important;
 }
 
 .reveal ul, .reveal ol {
-  display: block;
+  display: block !important;
 }
 
 .two-columns {
@@ -88,21 +88,21 @@
   flex-direction: row !important;
   justify-content: flex-start !important;
   align-content: space-evenly !important;
-  gap: 0;
+  gap: 0 !important;
 }
 
 .two-columns > li {
-  width: 48%;
+  width: 48% !important;
 }
 
 .reveal .slides section ul li,
 .reveal .slides section ol li {
-  margin-bottom: 0.4em;
+  margin-bottom: 0.4em !important;
 }
 
 .reveal .slide-number {
-  right: auto;
-  left: 16px;
+  right: auto !important;
+  left: 16px !important;
 }
 
 .reveal .searchbox {
