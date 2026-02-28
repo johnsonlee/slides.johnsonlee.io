@@ -140,7 +140,9 @@
 
 /* Mobile: bump text size so body copy stays readable on small screens */
 @media (max-width: 768px) {
-  .reveal {
+  .reveal .slides section p,
+  .reveal .slides section li,
+  .reveal .slides section blockquote {
     font-size: 56px !important;
   }
   .reveal table {
