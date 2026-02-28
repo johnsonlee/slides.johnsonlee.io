@@ -83,6 +83,10 @@
   display: block !important;
 }
 
+.reveal ol {
+  list-style-position: inside !important;
+}
+
 /* Auto-layout: heading shrinks, list stretches to fill */
 .reveal .slides > section > section > h1,
 .reveal .slides > section > section > h2,
