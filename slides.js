@@ -93,8 +93,20 @@
 
         Reveal.initialize(opts);
 
-        // 6. Auto-layout on ready
+        // 6. Auto-layout and MathJax on ready
         Reveal.on('ready', function() {
+          // Load MathJax for LaTeX formulas
+          window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+            startup: { typeset: false }
+          };
+          loadScript('https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js').then(function() {
+            MathJax.startup.promise.then(function() {
+              MathJax.typeset();
+            });
+          });
+
           document.querySelectorAll('.reveal .slides > section > section').forEach(function(slide) {
             if (slide.classList.contains('center')) return;
             var children = Array.prototype.slice.call(slide.children);
