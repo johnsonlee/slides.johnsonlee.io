@@ -66,18 +66,99 @@ Override accent color via CSS custom properties:
 }
 ```
 
-## Auto-Layout Classes
+## Auto-Layout
 
-| Class | Applied by | Purpose |
-|-------|-----------|---------|
-| `.center` | JS (auto) or Markdown directive | Centers slide content |
-| `.stretch-list` | JS (auto) | Stretches a single list to fill remaining space |
-| `.spaced-block` | JS (auto) | Adds top margin between multiple content blocks |
-| `.two-columns` | Markdown author | Two-column list layout (overrides `.stretch-list`) |
+The JS engine inspects each slide's DOM after Markdown rendering and automatically applies layout classes. No manual configuration needed.
 
-## Slide Types
+### 1. Centered (`.center`) — auto or manual
 
-Use `<!-- .slide: class="center" -->` as the first line of a slide for centered layout (cover pages, chapter titles). Default layout is top-left aligned with flexbox column.
+Heading + at most one line of text, no list/table/image → auto-centered.
+Also triggered by `<!-- .slide: class="center" -->` directive.
+
+```
+┌──────────────────────────────┐
+│                              │
+│                              │
+│        ## Chapter Title      │
+│                              │
+│     *A short tagline here*   │
+│                              │
+│                              │
+└──────────────────────────────┘
+```
+
+### 2. Heading + List (`.stretch-list`) — auto
+
+Heading + single `<ul>`/`<ol>` → list stretches to fill remaining space, items evenly spaced.
+
+```
+┌──────────────────────────────┐
+│ ## Heading                   │
+│                              │
+│ • Item A                     │
+│                              │
+│ • Item B                     │
+│                              │
+│ • Item C                     │
+│                              │
+│ • Item D                     │
+│                              │
+└──────────────────────────────┘
+```
+
+### 3. Heading + Image — default flexbox
+
+Heading stays top-left, image centered in remaining space (via CSS `p:has(> img)`).
+
+```
+┌──────────────────────────────┐
+│ ## Heading                   │
+│                              │
+│                              │
+│         ┌──────────┐         │
+│         │  <img>   │         │
+│         └──────────┘         │
+│                              │
+│                              │
+└──────────────────────────────┘
+```
+
+### 4. Multi-Block (`.spaced-block`) — auto
+
+Heading + multiple content blocks → blocks from the 2nd onward get top margin.
+
+```
+┌──────────────────────────────┐
+│ ## Heading                   │
+│                              │
+│ First paragraph or list...   │
+│                              │
+│           ↕ 1.5em            │
+│                              │
+│ Second paragraph or list...  │
+│                              │
+│           ↕ 1.5em            │
+│                              │
+│ > Blockquote                 │
+└──────────────────────────────┘
+```
+
+### 5. Two Columns (`.two-columns`) — manual
+
+Add `<!-- .element: class="two-columns" -->` before a list. Overrides `.stretch-list`'s `flex-direction`.
+
+```
+┌──────────────────────────────┐
+│ ## Heading                   │
+│                              │
+│ • Item A        • Item D     │
+│                              │
+│ • Item B        • Item E     │
+│                              │
+│ • Item C        • Item F     │
+│                              │
+└──────────────────────────────┘
+```
 
 ## LaTeX Support
 
