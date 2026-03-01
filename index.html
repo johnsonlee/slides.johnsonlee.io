@@ -67,6 +67,17 @@
       color: rgba(255,255,255,0.2);
       user-select: none;
     }
+    pre .lang-label {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+      font-family: system-ui, sans-serif;
+      letter-spacing: 0.5px;
+      user-select: none;
+    }
     pre .copy-btn {
       position: absolute;
       top: 8px;
@@ -499,6 +510,15 @@
       block.innerHTML = html.split('\n').map(function(line) {
         return '<span class="line">' + line + '</span>';
       }).join('\n');
+      // Add language label
+      var lang = block.className.match(/language-(\w+)/);
+      if (lang) {
+        var label = document.createElement('span');
+        label.className = 'lang-label';
+        label.textContent = lang[1];
+        block.parentElement.style.paddingTop = '2em';
+        block.parentElement.appendChild(label);
+      }
       // Add copy button
       var btn = document.createElement('button');
       btn.className = 'copy-btn';
