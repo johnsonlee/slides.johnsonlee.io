@@ -112,7 +112,7 @@
 
 /* Auto-layout: spacing for multi-block slides */
 .spaced-block {
-  margin-top: 1.5em !important;
+  margin-top: 1.25em !important;
 }
 
 .spaced-block:is(ul, ol) {
