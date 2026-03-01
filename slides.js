@@ -153,7 +153,7 @@
         // 7. Remove spaced-block on overflow
         function checkOverflow(slide) {
           var spaced = slide.querySelectorAll('.spaced-block');
-          if (!spaced.length) return;
+          if (!slide || !spaced.length) return;
           var slideRect = slide.getBoundingClientRect();
           var lastChild = slide.children[slide.children.length - 1];
           var lastRect = lastChild.getBoundingClientRect();
