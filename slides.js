@@ -100,7 +100,7 @@
         Reveal.initialize(opts);
 
         // 6. Line numbers, auto-layout and MathJax on ready
-        Reveal.on('ready', function() {
+        Reveal.on('ready', function(event) {
           // Apply line numbers to all non-text code blocks
           if (window.hljs && window.hljs.lineNumbersBlock) {
             document.querySelectorAll('.reveal pre code.hljs:not(.text)').forEach(function(block) {
@@ -169,7 +169,7 @@
           }
         }
 
-        checkOverflow(Reveal.getCurrentSlide());
+        checkOverflow(event.currentSlide);
 
         // 8. Dynamic title on slide change
         Reveal.on('slidechanged', function(event) {
