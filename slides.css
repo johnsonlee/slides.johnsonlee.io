@@ -57,18 +57,18 @@
   font-style: normal !important;
 }
 
-.reveal table {
+.reveal table:not(.hljs-ln) {
   font-size: 0.6em !important;
   width: 100% !important;
 }
 
-.reveal table th {
+.reveal table:not(.hljs-ln) th {
   background: rgba(var(--slides-accent-rgb), 0.2) !important;
   color: var(--slides-accent) !important;
 }
 
-.reveal table td,
-.reveal table th {
+.reveal table:not(.hljs-ln) td,
+.reveal table:not(.hljs-ln) th {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   padding: 0.4em 0.6em !important;
   vertical-align: middle !important;
