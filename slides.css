@@ -50,7 +50,7 @@
 
 .reveal blockquote {
   border-left: 6px solid var(--slides-accent) !important;
-  min-width: 90% !important;
+  min-width: 100% !important;
   margin-left: 0 !important;
   padding: 0.8em !important;
   background: rgba(255, 255, 255, 0.05) !important;
