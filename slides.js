@@ -18,6 +18,11 @@
     });
   }
 
+  var HLJS_LN = 'https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js';
+
+  // highlightjs-line-numbers.js registers on window.hljs
+  window.hljs = window.hljs || {};
+
   window.Slides = {
     init: function(config) {
       // 1. Inject Reveal.js CSS
@@ -74,7 +79,8 @@
           loadScript(CDN + '/plugin/markdown/markdown.js'),
           loadScript(CDN + '/plugin/highlight/highlight.js'),
           loadScript(CDN + '/plugin/notes/notes.js'),
-          loadScript(CDN + '/plugin/search/search.js')
+          loadScript(CDN + '/plugin/search/search.js'),
+          loadScript(HLJS_LN)
         ]);
       }).then(function() {
         var defaults = {
@@ -85,7 +91,6 @@
           hash: true,
           slideNumber: true,
           scrollActivationWidth: 0,
-          highlight: { lineNumbers: true },
           plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch]
         };
         // Merge user overrides (but always keep required plugins)
@@ -94,8 +99,14 @@
 
         Reveal.initialize(opts);
 
-        // 6. Auto-layout and MathJax on ready
+        // 6. Line numbers, auto-layout and MathJax on ready
         Reveal.on('ready', function() {
+          // Apply line numbers to all non-text code blocks
+          if (window.hljs && window.hljs.lineNumbersBlock) {
+            document.querySelectorAll('.reveal pre code.hljs:not(.text)').forEach(function(block) {
+              window.hljs.lineNumbersBlock(block, { singleLine: true });
+            });
+          }
           // Load MathJax for LaTeX formulas
           window.MathJax = {
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
