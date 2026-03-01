@@ -97,8 +97,6 @@
         var opts = Object.assign({}, defaults, config.reveal || {});
         opts.plugins = defaults.plugins;
 
-        Reveal.initialize(opts);
-
         // 6. Line numbers, auto-layout and MathJax on ready
         Reveal.on('ready', function(event) {
           // Apply line numbers to all non-text code blocks
@@ -152,6 +150,8 @@
           // 7. Remove spaced-block on overflow
           checkOverflow(event.currentSlide);
         });
+
+        Reveal.initialize(opts);
 
         function checkOverflow(slide) {
           if (!slide) return;
