@@ -111,18 +111,32 @@ Heading + single `<ul>`/`<ol>` with ≤ 8 items → list stretches to fill remai
 Heading + single list with > 8 items → automatically splits into `ceil(N/8)` columns via CSS `columns`.
 
 ```
-  9 items → 2 columns        17 items → 3 columns
+9 items → ceil(9/8) = 2 columns
 
-┌─────────────────────────┐ ┌─────────────────────────────────┐
-│ ## Heading               │ │ ## Heading                       │
-│                          │ │                                  │
-│ • Item 1    • Item 6     │ │ • Item 1   • Item 7   • Item 13  │
-│ • Item 2    • Item 7     │ │ • Item 2   • Item 8   • Item 14  │
-│ • Item 3    • Item 8     │ │ • Item 3   • Item 9   • Item 15  │
-│ • Item 4    • Item 9     │ │ • Item 4   • Item 10  • Item 16  │
-│ • Item 5                 │ │ • Item 5   • Item 11  • Item 17  │
-│                          │ │ • Item 6   • Item 12             │
-└─────────────────────────┘ └─────────────────────────────────┘
+┌──────────────────────────────┐
+│ ## Heading                   │
+│                              │
+│ • Item 1        • Item 6    │
+│ • Item 2        • Item 7    │
+│ • Item 3        • Item 8    │
+│ • Item 4        • Item 9    │
+│ • Item 5                    │
+│                              │
+└──────────────────────────────┘
+
+17 items → ceil(17/8) = 3 columns
+
+┌──────────────────────────────┐
+│ ## Heading                   │
+│                              │
+│ • Item 1   • Item 7  • Item 13│
+│ • Item 2   • Item 8  • Item 14│
+│ • Item 3   • Item 9  • Item 15│
+│ • Item 4   • Item 10 • Item 16│
+│ • Item 5   • Item 11 • Item 17│
+│ • Item 6   • Item 12         │
+│                              │
+└──────────────────────────────┘
 ```
 
 ### 4. Heading + Image — default flexbox
