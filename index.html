@@ -387,6 +387,21 @@
     chapter-1.md
     chapter-2.md</code></pre>
 
+    <h3>Images &amp; i18n</h3>
+    <p>The framework only rewrites paths for chapter markdown files. Image paths inside markdown are <strong>not</strong> rewritten.</p>
+    <p>For <strong>language-neutral</strong> images, use a shared <code>assets/</code> directory:</p>
+    <pre><code class="language-markdown">![RGB Cube](assets/RGB-color-cube.svg)</code></pre>
+    <p>For <strong>language-specific</strong> images (e.g. SVGs with translated labels), put them in <code>src/{lang}/images/</code> with the same filename. Each language's markdown references its own path:</p>
+    <pre class="tree"><code>src/
+  en/
+    images/
+      bubble-sort.svg        &lt;- English labels
+    chapter-3.md             &lt;- ![...](src/en/images/bubble-sort.svg)
+  zh/
+    images/
+      bubble-sort.svg        &lt;- Chinese labels
+    chapter-3.md             &lt;- ![...](src/zh/images/bubble-sort.svg)</code></pre>
+
     <h2>CSS Customization</h2>
     <p>Override the accent color with CSS custom properties:</p>
     <pre><code class="language-css">:root {
