@@ -167,6 +167,11 @@
   box-shadow: none !important;
 }
 
+.reveal pre code {
+  padding: 1em !important;
+  border-radius: 1em !important;
+}
+
 .reveal .slides .hljs {
   min-height: inherit !important;
 }
