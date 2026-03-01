@@ -98,7 +98,7 @@
         opts.plugins = defaults.plugins;
 
         // 6. Line numbers, auto-layout and MathJax on ready
-        Reveal.on('ready', function(event) {
+        Reveal.initialize(opts).then(function() {
           // Apply line numbers to all non-text code blocks
           if (window.hljs && window.hljs.lineNumbersBlock) {
             document.querySelectorAll('.reveal pre code.hljs:not(.text)').forEach(function(block) {
@@ -148,10 +148,8 @@
           });
 
           // 7. Remove spaced-block on overflow
-          checkOverflow(event.currentSlide);
+          checkOverflow(Reveal.getCurrentSlide());
         });
-
-        Reveal.initialize(opts);
 
         function checkOverflow(slide) {
           if (!slide) return;
