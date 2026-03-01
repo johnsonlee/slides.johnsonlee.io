@@ -44,13 +44,46 @@
     h3 { color: #e7ad52; font-size: 1.05em; margin: 1.5em 0 0.4em; }
 
     pre {
+      position: relative;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 8px;
-      padding: 1em 1.2em;
+      padding: 1em 1.2em 1em 3.5em;
       overflow-x: auto;
       font-size: 0.85em;
       line-height: 1.6;
+      counter-reset: line;
+    }
+    pre code .line {
+      counter-increment: line;
+    }
+    pre code .line::before {
+      content: counter(line);
+      display: inline-block;
+      width: 2em;
+      margin-left: -3.5em;
+      margin-right: 1.5em;
+      text-align: right;
+      color: rgba(255,255,255,0.2);
+      user-select: none;
+    }
+    pre .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      color: #999;
+      font-size: 12px;
+      padding: 3px 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: system-ui, sans-serif;
+    }
+    pre .copy-btn:hover {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
     }
     code {
       font-family: 'SF Mono', Menlo, Consolas, monospace;
@@ -458,6 +491,26 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script>
+    hljs.highlightAll();
+    document.querySelectorAll('pre code').forEach(function(block) {
+      // Wrap each line in a span for line numbers
+      var html = block.innerHTML.replace(/\n$/, '');
+      block.innerHTML = html.split('\n').map(function(line) {
+        return '<span class="line">' + line + '</span>';
+      }).join('\n');
+      // Add copy button
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.addEventListener('click', function() {
+        navigator.clipboard.writeText(block.textContent).then(function() {
+          btn.textContent = 'Copied!';
+          setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+        });
+      });
+      block.parentElement.appendChild(btn);
+    });
+  </script>
 </body>
 </html>
