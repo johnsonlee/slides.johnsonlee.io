@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slides - A Lightweight Slide Framework</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/monokai.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -271,7 +272,7 @@
 
     <h2>Quick Start</h2>
     <p>Add two lines to your HTML and call <code>Slides.init()</code>:</p>
-    <pre><code>&lt;head&gt;
+    <pre><code class="language-html">&lt;head&gt;
   &lt;link rel="stylesheet" href="https://slides.johnsonlee.io/slides.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -336,7 +337,7 @@
 
     <h2>CSS Customization</h2>
     <p>Override the accent color with CSS custom properties:</p>
-    <pre><code>:root {
+    <pre><code class="language-css">:root {
   --slides-accent: #e7ad52;
   --slides-accent-rgb: 231, 173, 82;
 }</code></pre>
@@ -456,5 +457,10 @@
     &nbsp;&middot;&nbsp; MIT License
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/languages/xml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/languages/css.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/languages/javascript.min.js"></script>
+  <script>hljs.highlightAll();</script>
 </body>
 </html>
