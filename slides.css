@@ -180,6 +180,10 @@
   background: none !important;
 }
 
+.hljs-ln {
+  line-height: 1.5em !important;
+}
+
 .reveal .slides .hljs.text .hljs-ln-numbers {
   display: none !important;
 }
