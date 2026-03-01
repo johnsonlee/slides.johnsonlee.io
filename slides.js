@@ -85,6 +85,7 @@
           hash: true,
           slideNumber: true,
           scrollActivationWidth: 0,
+          highlight: { lineNumbers: true },
           plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch]
         };
         // Merge user overrides (but always keep required plugins)
