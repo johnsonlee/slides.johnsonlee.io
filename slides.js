@@ -148,9 +148,11 @@
               }
             }
           });
+
+          // 7. Remove spaced-block on overflow
+          checkOverflow(event.currentSlide);
         });
 
-        // 7. Remove spaced-block on overflow
         function checkOverflow(slide) {
           if (!slide) return;
           var spaced = slide.querySelectorAll('.spaced-block');
@@ -168,8 +170,6 @@
             spaced.forEach(function(el) { el.classList.remove('spaced-block'); });
           }
         }
-
-        checkOverflow(event.currentSlide);
 
         // 8. Dynamic title on slide change
         Reveal.on('slidechanged', function(event) {
