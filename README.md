@@ -87,9 +87,9 @@ Also triggered by `<!-- .slide: class="center" -->` directive.
 └──────────────────────────────┘
 ```
 
-### 2. Heading + List (`.stretch-list`) — auto
+### 2. Heading + Short List (`.stretch-list`) — auto
 
-Heading + single `<ul>`/`<ol>` → list stretches to fill remaining space, items evenly spaced.
+Heading + single `<ul>`/`<ol>` with ≤ 8 items → list stretches to fill remaining space, items evenly spaced.
 
 ```
 ┌──────────────────────────────┐
@@ -106,7 +106,26 @@ Heading + single `<ul>`/`<ol>` → list stretches to fill remaining space, items
 └──────────────────────────────┘
 ```
 
-### 3. Heading + Image — default flexbox
+### 3. Heading + Long List (`.auto-columns`) — auto
+
+Heading + single list with > 8 items → automatically splits into `ceil(N/8)` columns via CSS `columns`.
+
+```
+  9 items → 2 columns        17 items → 3 columns
+
+┌─────────────────────────┐ ┌─────────────────────────────────┐
+│ ## Heading               │ │ ## Heading                       │
+│                          │ │                                  │
+│ • Item 1    • Item 6     │ │ • Item 1   • Item 7   • Item 13  │
+│ • Item 2    • Item 7     │ │ • Item 2   • Item 8   • Item 14  │
+│ • Item 3    • Item 8     │ │ • Item 3   • Item 9   • Item 15  │
+│ • Item 4    • Item 9     │ │ • Item 4   • Item 10  • Item 16  │
+│ • Item 5                 │ │ • Item 5   • Item 11  • Item 17  │
+│                          │ │ • Item 6   • Item 12             │
+└─────────────────────────┘ └─────────────────────────────────┘
+```
+
+### 4. Heading + Image — default flexbox
 
 Heading stays top-left, image centered in remaining space (via CSS `p:has(> img)`).
 
@@ -123,7 +142,7 @@ Heading stays top-left, image centered in remaining space (via CSS `p:has(> img)
 └──────────────────────────────┘
 ```
 
-### 4. Multi-Block (`.spaced-block`) — auto
+### 5. Multi-Block (`.spaced-block`) — auto
 
 Heading + multiple content blocks → blocks from the 2nd onward get top margin.
 
@@ -140,23 +159,6 @@ Heading + multiple content blocks → blocks from the 2nd onward get top margin.
 │           ↕ 1.5em            │
 │                              │
 │ > Blockquote                 │
-└──────────────────────────────┘
-```
-
-### 5. Two Columns (`.two-columns`) — manual
-
-Add `<!-- .element: class="two-columns" -->` before a list. Overrides `.stretch-list`'s `flex-direction`.
-
-```
-┌──────────────────────────────┐
-│ ## Heading                   │
-│                              │
-│ • Item A        • Item D     │
-│                              │
-│ • Item B        • Item E     │
-│                              │
-│ • Item C        • Item F     │
-│                              │
 └──────────────────────────────┘
 ```
 
