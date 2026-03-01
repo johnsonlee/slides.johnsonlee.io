@@ -139,7 +139,26 @@ Heading + single list with > 8 items → automatically splits into `ceil(N/8)` c
 └──────────────────────────────┘
 ```
 
-### 4. Heading + Image — default flexbox
+### 4. Heading + Table — default flexbox
+
+Heading stays top-left, table fills available width below.
+
+```
+┌──────────────────────────────┐
+│ ## Heading                   │
+│                              │
+│ ┌──────┬──────────┬────────┐ │
+│ │ Name │ Year     │ Notes  │ │
+│ ├──────┼──────────┼────────┤ │
+│ │ A    │ 2020     │ ...    │ │
+│ │ B    │ 2021     │ ...    │ │
+│ │ C    │ 2022     │ ...    │ │
+│ └──────┴──────────┴────────┘ │
+│                              │
+└──────────────────────────────┘
+```
+
+### 5. Heading + Image — default flexbox
 
 Heading stays top-left, image centered in remaining space (via CSS `p:has(> img)`).
 
@@ -156,7 +175,7 @@ Heading stays top-left, image centered in remaining space (via CSS `p:has(> img)
 └──────────────────────────────┘
 ```
 
-### 5. Multi-Block (`.spaced-block`) — auto
+### 6. Multi-Block (`.spaced-block`) — auto
 
 Heading + multiple content blocks → blocks from the 2nd onward get top margin.
 
