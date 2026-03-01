@@ -142,6 +142,7 @@
                 list.classList.add('stretch-list');
               }
             } else if (blocks.length > 1) {
+              // Multiple blocks: add spacing
               for (var i = 1; i < blocks.length; i++) {
                 blocks[i].classList.add('spaced-block');
               }
