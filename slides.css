@@ -104,6 +104,13 @@
   justify-content: space-evenly !important;
 }
 
+/* Auto-layout: multi-column for long lists */
+.reveal .slides .auto-columns {
+  flex: 1 1 auto !important;
+  columns: var(--auto-columns) !important;
+  column-gap: 2em !important;
+}
+
 /* Auto-layout: spacing for multi-block slides */
 .spaced-block {
   margin-top: 1.5em !important;

@@ -119,9 +119,16 @@
               return;
             }
 
-            // Heading + single list → stretch the list to fill space
+            // Heading + single list → stretch or auto-columns
             if (headings.length > 0 && blocks.length === 1 && /^(UL|OL)$/.test(blocks[0].tagName)) {
-              blocks[0].classList.add('stretch-list');
+              var list = blocks[0];
+              var cols = Math.max(1, Math.round(list.children.length / 6));
+              if (cols > 1 && !list.classList.contains('two-columns')) {
+                list.classList.add('auto-columns');
+                list.style.setProperty('--auto-columns', cols);
+              } else {
+                list.classList.add('stretch-list');
+              }
             } else if (blocks.length > 1) {
               // Multiple blocks: from the 2nd onward, add spacing
               for (var i = 1; i < blocks.length; i++) {
