@@ -89,18 +89,16 @@
       width: 16px;
       height: 16px;
     }
-    pre .code-lines { border-collapse: collapse; width: 100%; margin: 0; font-size: inherit; }
-    pre .code-lines td { padding: 0; border: none; vertical-align: top; }
-    pre .code-lines .line-num {
+    .hljs-ln { border-collapse: collapse; width: 100%; margin: 0; font-size: inherit; }
+    .hljs-ln tr { background: none; }
+    .hljs-ln td { padding: 0; border: none; }
+    .hljs-ln td.hljs-ln-numbers {
       user-select: none;
       text-align: right;
       color: rgba(255,255,255,0.2);
-      padding-right: 1em;
+      padding-right: 1em !important;
+      vertical-align: top;
       width: 2em;
-      white-space: nowrap;
-    }
-    pre .code-lines .line-code {
-      white-space: pre;
     }
     code {
       font-family: 'SF Mono', Menlo, Consolas, monospace;
@@ -512,38 +510,13 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
   <script>
     var copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
     var checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
-    // Split highlighted HTML by newlines, preserving open/close span context
-    function splitPreservingTags(html) {
-      var lines = html.replace(/\n$/, '').split('\n');
-      var result = [];
-      var openTags = [];
-
-      for (var i = 0; i < lines.length; i++) {
-        var line = lines[i];
-        var prefix = openTags.join('');
-
-        var re = /<(\/?)span([^>]*)>/g;
-        var m;
-        while ((m = re.exec(line)) !== null) {
-          if (m[1] === '/') {
-            openTags.pop();
-          } else {
-            openTags.push('<span' + m[2] + '>');
-          }
-        }
-
-        var suffix = '';
-        for (var j = 0; j < openTags.length; j++) suffix += '</span>';
-
-        result.push('<tr><td class="line-num">' + (i + 1) + '</td><td class="line-code">' + prefix + line + suffix + '</td></tr>');
-      }
-
-      return '<table class="code-lines">' + result.join('') + '</table>';
-    }
+    hljs.highlightAll();
+    hljs.initLineNumbersOnLoad();
 
     document.querySelectorAll('pre code').forEach(function(block) {
       var pre = block.parentElement;
@@ -551,18 +524,6 @@
 
       var rawText = block.textContent;
       var langMatch = block.className.match(/language-(\w+)/);
-
-      // Highlight manually (don't use hljs.highlightAll which can't be post-processed)
-      var highlighted;
-      if (langMatch) {
-        highlighted = hljs.highlight(rawText, { language: langMatch[1] }).value;
-      } else {
-        highlighted = hljs.highlightAuto(rawText).value;
-      }
-
-      // Split into lines preserving tag context, wrap with line numbers
-      block.innerHTML = splitPreservingTags(highlighted);
-      block.classList.add('hljs');
 
       // Build toolbar with language label + copy icon
       var toolbar = document.createElement('div');
