@@ -48,53 +48,62 @@
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 8px;
-      padding: 1em 1.2em 1em 3.5em;
+      padding: 1em 1.2em;
       overflow-x: auto;
       font-size: 0.85em;
       line-height: 1.6;
       counter-reset: line;
     }
-    pre code .line {
-      counter-increment: line;
+    pre.has-toolbar {
+      padding-top: 0;
     }
-    pre code .line::before {
-      content: counter(line);
-      display: inline-block;
-      width: 2em;
-      margin-left: -3.5em;
-      margin-right: 1.5em;
-      text-align: right;
-      color: rgba(255,255,255,0.2);
-      user-select: none;
+    pre .code-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 -1.2em;
+      padding: 6px 12px 6px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    pre .lang-label {
-      position: absolute;
-      top: 8px;
-      left: 12px;
-      font-size: 10px;
-      color: rgba(255,255,255,0.25);
+    pre .code-toolbar .lang-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
       text-transform: uppercase;
       font-family: system-ui, sans-serif;
       letter-spacing: 0.5px;
       user-select: none;
     }
-    pre .copy-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 4px;
-      color: #999;
-      font-size: 12px;
-      padding: 3px 10px;
+    pre .code-toolbar .copy-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.3);
       cursor: pointer;
-      transition: all 0.2s;
-      font-family: system-ui, sans-serif;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
     }
-    pre .copy-btn:hover {
-      background: rgba(255,255,255,0.2);
-      color: #fff;
+    pre .code-toolbar .copy-btn:hover {
+      color: rgba(255,255,255,0.7);
+    }
+    pre .code-toolbar .copy-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    pre code .line {
+      display: block;
+      counter-increment: line;
+      padding-left: 3.5em;
+      text-indent: -3.5em;
+    }
+    pre code .line::before {
+      content: counter(line);
+      display: inline-block;
+      width: 2em;
+      margin-right: 1.5em;
+      text-align: right;
+      color: rgba(255,255,255,0.2);
+      user-select: none;
     }
     code {
       font-family: 'SF Mono', Menlo, Consolas, monospace;
@@ -503,33 +512,43 @@
 
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
   <script>
+    var copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    var checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
     hljs.highlightAll();
     document.querySelectorAll('pre code').forEach(function(block) {
+      var pre = block.parentElement;
+
       // Wrap each line in a span for line numbers
       var html = block.innerHTML.replace(/\n$/, '');
       block.innerHTML = html.split('\n').map(function(line) {
         return '<span class="line">' + line + '</span>';
       }).join('\n');
-      // Add language label
+
+      // Build toolbar with language label + copy icon
       var lang = block.className.match(/language-(\w+)/);
-      if (lang) {
-        var label = document.createElement('span');
-        label.className = 'lang-label';
-        label.textContent = lang[1];
-        block.parentElement.style.paddingTop = '2em';
-        block.parentElement.appendChild(label);
-      }
-      // Add copy button
+      var toolbar = document.createElement('div');
+      toolbar.className = 'code-toolbar';
+
+      var label = document.createElement('span');
+      label.className = 'lang-label';
+      label.textContent = lang ? lang[1] : '';
+      toolbar.appendChild(label);
+
       var btn = document.createElement('button');
       btn.className = 'copy-btn';
-      btn.textContent = 'Copy';
+      btn.innerHTML = copySvg;
+      btn.title = 'Copy';
       btn.addEventListener('click', function() {
         navigator.clipboard.writeText(block.textContent).then(function() {
-          btn.textContent = 'Copied!';
-          setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+          btn.innerHTML = checkSvg;
+          setTimeout(function() { btn.innerHTML = copySvg; }, 1500);
         });
       });
-      block.parentElement.appendChild(btn);
+      toolbar.appendChild(btn);
+
+      pre.classList.add('has-toolbar');
+      pre.insertBefore(toolbar, pre.firstChild);
     });
   </script>
 </body>
