@@ -48,11 +48,10 @@
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 8px;
-      padding: 1em 1.2em;
+      padding: 1em;
       overflow-x: auto;
       font-size: 0.85em;
       line-height: 1.6;
-      counter-reset: line;
     }
     pre.has-toolbar {
       padding-top: 0;
@@ -61,8 +60,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 0 -1.2em 1em;
-      padding: 6px 12px 6px 16px;
+      margin: 0 -1em 1em;
+      padding: 6px 1em;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     pre .code-toolbar .lang-label {
@@ -92,18 +91,15 @@
     }
     pre code .line {
       display: block;
-      counter-increment: line;
-      padding-left: 3.5em;
-      text-indent: -3.5em;
     }
-    pre code .line::before {
-      content: counter(line);
+    pre code .line .line-num {
       display: inline-block;
-      width: 2em;
-      margin-right: 1.5em;
+      width: 2.5em;
       text-align: right;
+      margin-right: 1em;
       color: rgba(255,255,255,0.2);
       user-select: none;
+      pointer-events: none;
     }
     code {
       font-family: 'SF Mono', Menlo, Consolas, monospace;
@@ -523,10 +519,10 @@
     document.querySelectorAll('pre code').forEach(function(block) {
       var pre = block.parentElement;
 
-      // Wrap each line in a span for line numbers
+      // Wrap each line in a span with explicit line number
       var html = block.innerHTML.replace(/\n$/, '');
-      block.innerHTML = html.split('\n').map(function(line) {
-        return '<span class="line">' + line + '</span>';
+      block.innerHTML = html.split('\n').map(function(line, i) {
+        return '<span class="line"><span class="line-num">' + (i + 1) + '</span>' + line + '</span>';
       }).join('\n');
 
       // Build toolbar with language label + copy icon
