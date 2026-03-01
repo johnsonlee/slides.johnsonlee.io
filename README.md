@@ -76,15 +76,15 @@ Heading + at most one line of text, no list/table/image → auto-centered.
 Also triggered by `<!-- .slide: class="center" -->` directive.
 
 ```
-┌──────────────────────────────┐
-│                              │
-│                              │
-│        ## Chapter Title      │
-│                              │
-│     *A short tagline here*   │
-│                              │
-│                              │
-└──────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│                                              │
+│                                              │
+│             ## Chapter Title                 │
+│                                              │
+│          *A short tagline here*              │
+│                                              │
+│                                              │
+└──────────────────────────────────────────────┘
 ```
 
 ### 2. Heading + Short List (`.stretch-list`) — auto
@@ -92,18 +92,18 @@ Also triggered by `<!-- .slide: class="center" -->` directive.
 Heading + single `<ul>`/`<ol>` with ≤ 8 items → list stretches to fill remaining space, items evenly spaced.
 
 ```
-┌──────────────────────────────┐
-│ ## Heading                   │
-│                              │
-│ • Item A                     │
-│                              │
-│ • Item B                     │
-│                              │
-│ • Item C                     │
-│                              │
-│ • Item D                     │
-│                              │
-└──────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│ ## Heading                                   │
+│                                              │
+│ • Item A                                     │
+│                                              │
+│ • Item B                                     │
+│                                              │
+│ • Item C                                     │
+│                                              │
+│ • Item D                                     │
+│                                              │
+└──────────────────────────────────────────────┘
 ```
 
 ### 3. Heading + Long List (`.auto-columns`) — auto
@@ -113,30 +113,30 @@ Heading + single list with > 8 items → automatically splits into `ceil(N/8)` c
 ```
 9 items → ceil(9/8) = 2 columns
 
-┌──────────────────────────────┐
-│ ## Heading                   │
-│                              │
-│ • Item 1        • Item 6    │
-│ • Item 2        • Item 7    │
-│ • Item 3        • Item 8    │
-│ • Item 4        • Item 9    │
-│ • Item 5                    │
-│                              │
-└──────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│ ## Heading                                   │
+│                                              │
+│ • Item 1          • Item 6                   │
+│ • Item 2          • Item 7                   │
+│ • Item 3          • Item 8                   │
+│ • Item 4          • Item 9                   │
+│ • Item 5                                     │
+│                                              │
+└──────────────────────────────────────────────┘
 
 17 items → ceil(17/8) = 3 columns
 
-┌──────────────────────────────┐
-│ ## Heading                   │
-│                              │
-│ • Item 1   • Item 7  • Item 13│
-│ • Item 2   • Item 8  • Item 14│
-│ • Item 3   • Item 9  • Item 15│
-│ • Item 4   • Item 10 • Item 16│
-│ • Item 5   • Item 11 • Item 17│
-│ • Item 6   • Item 12         │
-│                              │
-└──────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│ ## Heading                                   │
+│                                              │
+│ • Item 1     • Item 7      • Item 13         │
+│ • Item 2     • Item 8      • Item 14         │
+│ • Item 3     • Item 9      • Item 15         │
+│ • Item 4     • Item 10     • Item 16         │
+│ • Item 5     • Item 11     • Item 17         │
+│ • Item 6     • Item 12                       │
+│                                              │
+└──────────────────────────────────────────────┘
 ```
 
 ### 4. Heading + Table — default flexbox
@@ -144,18 +144,18 @@ Heading + single list with > 8 items → automatically splits into `ceil(N/8)` c
 Heading stays top-left, table fills available width below.
 
 ```
-┌──────────────────────────────┐
-│ ## Heading                   │
-│                              │
-│ ┌──────┬──────────┬────────┐ │
-│ │ Name │ Year     │ Notes  │ │
-│ ├──────┼──────────┼────────┤ │
-│ │ A    │ 2020     │ ...    │ │
-│ │ B    │ 2021     │ ...    │ │
-│ │ C    │ 2022     │ ...    │ │
-│ └──────┴──────────┴────────┘ │
-│                              │
-└──────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│ ## Heading                                   │
+│                                              │
+│ ┌────────────┬──────────┬──────────────────┐ │
+│ │ Name       │ Year     │ Notes            │ │
+│ ├────────────┼──────────┼──────────────────┤ │
+│ │ A          │ 2020     │ ...              │ │
+│ │ B          │ 2021     │ ...              │ │
+│ │ C          │ 2022     │ ...              │ │
+│ └────────────┴──────────┴──────────────────┘ │
+│                                              │
+└──────────────────────────────────────────────┘
 ```
 
 ### 5. Heading + Image — default flexbox
@@ -163,16 +163,16 @@ Heading stays top-left, table fills available width below.
 Heading stays top-left, image centered in remaining space (via CSS `p:has(> img)`).
 
 ```
-┌──────────────────────────────┐
-│ ## Heading                   │
-│                              │
-│                              │
-│         ┌──────────┐         │
-│         │  <img>   │         │
-│         └──────────┘         │
-│                              │
-│                              │
-└──────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│ ## Heading                                   │
+│                                              │
+│                                              │
+│              ┌──────────────┐                │
+│              │    <img>     │                │
+│              └──────────────┘                │
+│                                              │
+│                                              │
+└──────────────────────────────────────────────┘
 ```
 
 ### 6. Multi-Block (`.spaced-block`) — auto
@@ -180,19 +180,19 @@ Heading stays top-left, image centered in remaining space (via CSS `p:has(> img)
 Heading + multiple content blocks → blocks from the 2nd onward get top margin.
 
 ```
-┌──────────────────────────────┐
-│ ## Heading                   │
-│                              │
-│ First paragraph or list...   │
-│                              │
-│           ↕ 1.5em            │
-│                              │
-│ Second paragraph or list...  │
-│                              │
-│           ↕ 1.5em            │
-│                              │
-│ > Blockquote                 │
-└──────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│ ## Heading                                   │
+│                                              │
+│ First paragraph or list...                   │
+│                                              │
+│                 ↕ 1.5em                      │
+│                                              │
+│ Second paragraph or list...                  │
+│                                              │
+│                 ↕ 1.5em                      │
+│                                              │
+│ > Blockquote                                 │
+└──────────────────────────────────────────────┘
 ```
 
 ## LaTeX Support
