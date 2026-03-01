@@ -146,6 +146,11 @@
               for (var i = 1; i < blocks.length; i++) {
                 blocks[i].classList.add('spaced-block');
               }
+              var h = slide.querySelector('h1, h2, h3, h4, h5, h6');
+              console.log('[auto-layout]', h ? h.textContent : '(no heading)',
+                'scrollHeight:', slide.scrollHeight,
+                'clientHeight:', slide.clientHeight,
+                'overflow:', slide.scrollHeight > slide.clientHeight);
               if (slide.scrollHeight > slide.clientHeight) {
                 for (var i = 1; i < blocks.length; i++) {
                   blocks[i].classList.remove('spaced-block');
