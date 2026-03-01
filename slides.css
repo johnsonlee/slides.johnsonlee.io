@@ -120,19 +120,6 @@
   line-height: 1.5 !important;
 }
 
-/* Two-column layout overrides stretch-list's flex-direction */
-.reveal .slides .two-columns {
-  flex-wrap: wrap !important;
-  flex-direction: row !important;
-  justify-content: flex-start !important;
-  align-content: space-evenly !important;
-  gap: 0 !important;
-}
-
-.reveal .slides .two-columns > li {
-  width: 48% !important;
-}
-
 .reveal .slides section ul li,
 .reveal .slides section ol li {
   margin-bottom: 0.4em !important;

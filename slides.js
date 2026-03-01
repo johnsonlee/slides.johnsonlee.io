@@ -123,7 +123,7 @@
             if (headings.length > 0 && blocks.length === 1 && /^(UL|OL)$/.test(blocks[0].tagName)) {
               var list = blocks[0];
               var cols = Math.ceil(list.children.length / 6);
-              if (cols > 1 && !list.classList.contains('two-columns')) {
+              if (cols > 1) {
                 list.classList.add('auto-columns');
                 list.style.setProperty('--auto-columns', cols);
               } else {
