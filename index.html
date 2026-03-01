@@ -89,17 +89,15 @@
       width: 16px;
       height: 16px;
     }
-    pre code .line {
-      display: block;
-    }
-    pre code .line .line-num {
-      display: inline-block;
-      width: 2.5em;
-      text-align: right;
-      margin-right: 1em;
-      color: rgba(255,255,255,0.2);
+    .hljs-ln { border-collapse: collapse; margin: 0; }
+    .hljs-ln td { padding: 0; border: none; }
+    .hljs-ln-numbers {
       user-select: none;
-      pointer-events: none;
+      text-align: right;
+      color: rgba(255,255,255,0.2);
+      vertical-align: top;
+      padding-right: 1em !important;
+      width: 2em;
     }
     code {
       font-family: 'SF Mono', Menlo, Consolas, monospace;
@@ -511,19 +509,22 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
   <script>
     var copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
     var checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
     hljs.highlightAll();
+
     document.querySelectorAll('pre code').forEach(function(block) {
       var pre = block.parentElement;
+      if (pre.classList.contains('tree')) return;
 
-      // Wrap each line in a span with explicit line number
-      var html = block.innerHTML.replace(/\n$/, '');
-      block.innerHTML = html.split('\n').map(function(line, i) {
-        return '<span class="line"><span class="line-num">' + (i + 1) + '</span>' + line + '</span>';
-      }).join('\n');
+      // Save raw text for copy button (before line numbers are added)
+      var rawText = block.textContent;
+
+      // Add line numbers via plugin
+      hljs.lineNumbersBlock(block);
 
       // Build toolbar with language label + copy icon
       var lang = block.className.match(/language-(\w+)/);
@@ -540,7 +541,7 @@
       btn.innerHTML = copySvg;
       btn.title = 'Copy';
       btn.addEventListener('click', function() {
-        navigator.clipboard.writeText(block.textContent).then(function() {
+        navigator.clipboard.writeText(rawText).then(function() {
           btn.innerHTML = checkSvg;
           setTimeout(function() { btn.innerHTML = copySvg; }, 1500);
         });
