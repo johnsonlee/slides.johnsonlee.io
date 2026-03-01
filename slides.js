@@ -156,7 +156,14 @@
           if (!spaced.length) return;
           var slideRect = slide.getBoundingClientRect();
           var lastChild = slide.children[slide.children.length - 1];
-          if (lastChild.getBoundingClientRect().bottom > slideRect.bottom) {
+          var lastRect = lastChild.getBoundingClientRect();
+          var overflow = lastRect.bottom > slideRect.bottom;
+          var h = slide.querySelector('h1, h2, h3, h4, h5, h6');
+          console.log('[checkOverflow]', h ? h.textContent : '(no heading)',
+            'slide.bottom:', slideRect.bottom,
+            'lastChild.bottom:', lastRect.bottom,
+            'overflow:', overflow);
+          if (overflow) {
             spaced.forEach(function(el) { el.classList.remove('spaced-block'); });
           }
         }
