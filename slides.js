@@ -142,24 +142,29 @@
                 list.classList.add('stretch-list');
               }
             } else if (blocks.length > 1) {
-              // Multiple blocks: add spacing only if it won't overflow
               for (var i = 1; i < blocks.length; i++) {
                 blocks[i].classList.add('spaced-block');
-              }
-              var slideRect = slide.getBoundingClientRect();
-              var lastChild = children[children.length - 1];
-              var lastRect = lastChild.getBoundingClientRect();
-              if (lastRect.bottom > slideRect.bottom) {
-                for (var i = 1; i < blocks.length; i++) {
-                  blocks[i].classList.remove('spaced-block');
-                }
               }
             }
           });
         });
 
-        // 7. Dynamic title on slide change
+        // 7. Remove spaced-block on overflow
+        function checkOverflow(slide) {
+          var spaced = slide.querySelectorAll('.spaced-block');
+          if (!spaced.length) return;
+          var slideRect = slide.getBoundingClientRect();
+          var lastChild = slide.children[slide.children.length - 1];
+          if (lastChild.getBoundingClientRect().bottom > slideRect.bottom) {
+            spaced.forEach(function(el) { el.classList.remove('spaced-block'); });
+          }
+        }
+
+        checkOverflow(Reveal.getCurrentSlide());
+
+        // 8. Dynamic title on slide change
         Reveal.on('slidechanged', function(event) {
+          checkOverflow(event.currentSlide);
           var t = title;
           var h = event.currentSlide.querySelector('h1, h2, h3');
           if (h) {
