@@ -2,42 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Slides Template</title>
-  <link rel="stylesheet" href="slides.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slides - A Lightweight Slide Framework</title>
   <style>
-    .demo-info {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2em;
-      font-family: system-ui, sans-serif;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #111;
       color: #ccc;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: #e7ad52; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero h1 { font-size: 2.5em; color: #fff; margin-bottom: 0.3em; }
+    .hero h1 span { color: #e7ad52; }
+    .hero p { font-size: 1.15em; color: #999; max-width: 520px; margin: 0 auto 1.5em; }
+    .hero .cta {
+      display: inline-block;
+      padding: 10px 28px;
+      background: #e7ad52;
+      color: #111;
+      font-weight: 600;
+      border-radius: 6px;
+      font-size: 0.95em;
+      transition: opacity 0.2s;
+    }
+    .hero .cta:hover { opacity: 0.85; text-decoration: none; }
+
+    /* Content */
+    .content { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+    h2 { color: #fff; font-size: 1.4em; margin: 2em 0 0.6em; }
+    h2:first-child { margin-top: 0; }
+    h3 { color: #e7ad52; font-size: 1.05em; margin: 1.5em 0 0.4em; }
+
+    pre {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 1em 1.2em;
+      overflow-x: auto;
+      font-size: 0.85em;
       line-height: 1.6;
     }
-    .demo-info h1 { color: #e7ad52; margin-bottom: 0.5em; }
-    .demo-info code {
-      background: rgba(255, 255, 255, 0.1);
+    code {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+    }
+    :not(pre) > code {
+      background: rgba(255,255,255,0.08);
       padding: 0.15em 0.4em;
       border-radius: 4px;
       font-size: 0.9em;
     }
-    .demo-info pre {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1em;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-size: 0.85em;
-      line-height: 1.5;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9em;
+      margin: 0.5em 0;
     }
-    .demo-info a { color: #e7ad52; }
+    th, td {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    th { color: #e7ad52; font-weight: 600; }
+
+    ul, ol { padding-left: 1.5em; margin: 0.5em 0; }
+    li { margin-bottom: 0.4em; }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 0.8em 0;
+    }
+    .feature {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .feature strong { color: #fff; display: block; margin-bottom: 4px; }
+    .feature span { font-size: 0.9em; color: #999; }
+
+    .tree { color: #999; }
+
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.85em;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.8em; }
+      .features { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-<body style="background: #111;">
-  <div class="demo-info">
-    <h1>slides.johnsonlee.io</h1>
-    <p>A lightweight, CDN-hosted slide framework built on <a href="https://revealjs.com">Reveal.js</a>.</p>
+<body>
+
+  <div class="hero">
+    <h1><span>Slides</span></h1>
+    <p>A lightweight slide framework built on Reveal.js. Write Markdown, get beautiful presentations with auto-layout, i18n, and LaTeX support.</p>
+    <a class="cta" href="https://llm.johnsonlee.io">See it in action</a>
+  </div>
+
+  <div class="content">
 
     <h2>Quick Start</h2>
+    <p>Add two lines to your HTML and call <code>Slides.init()</code>:</p>
     <pre><code>&lt;head&gt;
   &lt;link rel="stylesheet" href="https://slides.johnsonlee.io/slides.css"&gt;
 &lt;/head&gt;
@@ -53,22 +135,92 @@
 &lt;/body&gt;</code></pre>
 
     <h2>Features</h2>
-    <ul>
-      <li>Automatic Reveal.js setup (CSS + JS + plugins)</li>
-      <li>Multi-language support with toggle button</li>
-      <li>Auto-layout: centering, flex stretching, spacing</li>
-      <li>Dynamic page titles</li>
-      <li>Customizable accent color via CSS variables</li>
-    </ul>
+    <div class="features">
+      <div class="feature">
+        <strong>Zero Config</strong>
+        <span>Reveal.js CSS, JS, and plugins loaded automatically</span>
+      </div>
+      <div class="feature">
+        <strong>Multi-Language</strong>
+        <span>Built-in i18n with URL-based language toggle</span>
+      </div>
+      <div class="feature">
+        <strong>Auto-Layout</strong>
+        <span>Smart centering, list stretching, multi-column, and spacing</span>
+      </div>
+      <div class="feature">
+        <strong>LaTeX Math</strong>
+        <span>MathJax 3 loaded automatically for $...$ and \(...\) syntax</span>
+      </div>
+      <div class="feature">
+        <strong>Customizable</strong>
+        <span>Accent color and Reveal.js options via CSS variables and config</span>
+      </div>
+      <div class="feature">
+        <strong>Markdown-Driven</strong>
+        <span>Write slides in Markdown, organized as chapter files</span>
+      </div>
+    </div>
 
-    <h2>CSS Variables</h2>
+    <h2>Config</h2>
+    <table>
+      <tr><th>Property</th><th>Type</th><th>Required</th><th>Description</th></tr>
+      <tr><td><code>title</code></td><td><code>string</code></td><td>Yes</td><td>Site title for <code>&lt;title&gt;</code> tag</td></tr>
+      <tr><td><code>chapters</code></td><td><code>string[]</code></td><td>Yes</td><td>Markdown filenames without <code>.md</code></td></tr>
+      <tr><td><code>langs</code></td><td><code>{ code: label }</code></td><td>No</td><td>Language map, e.g. <code>{ en: 'EN', zh: '中文' }</code></td></tr>
+      <tr><td><code>reveal</code></td><td><code>object</code></td><td>No</td><td>Override Reveal.js init options</td></tr>
+    </table>
+
+    <h2>Content Structure</h2>
+    <p>Markdown files are loaded from <code>src/{lang}/{chapter}.md</code>:</p>
+    <pre class="tree"><code>src/
+  en/
+    cover.md
+    chapter-1.md
+    chapter-2.md
+  zh/
+    cover.md
+    chapter-1.md
+    chapter-2.md</code></pre>
+
+    <h2>CSS Customization</h2>
+    <p>Override the accent color with CSS custom properties:</p>
     <pre><code>:root {
   --slides-accent: #e7ad52;
   --slides-accent-rgb: 231, 173, 82;
 }</code></pre>
 
-    <h2>Example</h2>
-    <p>See it in action: <a href="https://llm.johnsonlee.io">llm.johnsonlee.io</a></p>
+    <h2>Auto-Layout</h2>
+    <p>The JS engine inspects each slide after Markdown rendering and applies the best layout automatically:</p>
+
+    <h3>1. Centered</h3>
+    <p>Heading + at most one line of text, no list/table/image. Also triggered by <code>&lt;!-- .slide: class="center" --&gt;</code>.</p>
+
+    <h3>2. Heading + Short List</h3>
+    <p>Single list with ≤ 8 items stretches to fill remaining space, items evenly spaced.</p>
+
+    <h3>3. Heading + Long List</h3>
+    <p>Lists with > 8 items automatically split into <code>ceil(N/8)</code> columns.</p>
+
+    <h3>4. Heading + Table</h3>
+    <p>Table fills the available width below the heading.</p>
+
+    <h3>5. Heading + Image</h3>
+    <p>Image is centered in the remaining space below the heading.</p>
+
+    <h3>6. Multi-Block</h3>
+    <p>Multiple content blocks get automatic vertical spacing (1.5em).</p>
+
+    <h2>LaTeX Support</h2>
+    <p>Inline math with <code>$...$</code> or <code>\(...\)</code>:</p>
+    <pre><code>The loss function is $L = -\sum p(x) \log q(x)$.</code></pre>
+
   </div>
+
+  <div class="footer">
+    <a href="https://github.com/johnsonlee/slides.johnsonlee.io">GitHub</a>
+    &nbsp;&middot;&nbsp; MIT License
+  </div>
+
 </body>
 </html>
